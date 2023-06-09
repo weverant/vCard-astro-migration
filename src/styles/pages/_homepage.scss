@@ -1,0 +1,363 @@
+/*-----------------------------------------------------------------------------------*/
+/*  homepage
+/*-----------------------------------------------------------------------------------*/
+body,
+html {
+  margin: 0;
+  transition: opacity 400ms;
+  scroll-behavior: smooth;
+}
+
+.about {
+  height: 95vh;
+  min-height: 600px;
+  width: 100%;
+  background-color: $black;
+  overflow: hidden;
+
+  @include screen(tablet) {
+    min-height: 700px;
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  &__limit {
+    height: 100%;
+    overflow: hidden;
+    padding-right: 10%;
+
+    @include screen(desktop-lg) {
+      padding-right: 5%;
+    }
+
+    @include screen(desktop-xlg) {
+      padding-right: 5%;
+    }
+  }
+
+  &__content {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: opac 0.3s forwards 0.7s cubic-bezier(.57, .58, .79, .99);
+  }
+}
+
+.projects {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 82vh;
+  transform: scale(0.5);
+  opacity: 0;
+  animation: opac2 0.5s forwards 0.5s cubic-bezier(.57, .58, .79, .99);
+
+
+  @include screen(tablet) {
+    height: 95vh;
+    min-height: 500px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include screen(tablet) {
+      width: 50%;
+      position: relative;
+      height: 100%;
+    }
+
+
+    &--left {
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (max-width: 767px) {
+        width: 100vw;
+      }
+
+      h3 {
+        text-align: center;
+      }
+    }
+  }
+
+  &__block {
+    &:hover {
+      .projects__el {
+        color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  &__el {
+    margin: 5px 0;
+
+    a {
+      padding: 2px 0;
+      display: block;
+      transition: all 0.3s 0s ease-out;
+    }
+
+    &:hover {
+      color: $black!important;
+    }
+
+    text-align: center;
+    font-family: $font-family-title;
+    transition: color 0.2s ease-in-out;
+    @include rhythm(34, 40);
+
+    @include screen(tablet) {
+      @include rhythm(40, 48);
+    }
+
+    @include screen(desktop) {
+      @include rhythm(48, 58);
+    }
+  }
+
+  &__details {
+    display: none;
+
+    .details__el {
+      img {
+        width: 100%;
+      }
+    }
+
+    @include screen(tablet) {
+      display: block;
+      background-color: #e4e4e4;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      width: 50%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    @include screen(desktop) {
+      margin-top: 0;
+      margin-left: 0;
+      @include push--auto;
+    }
+  }
+
+  &__info {
+    padding-left: 20px;
+    padding-right: 20px;
+    color: $title-color;
+    font-family: $font-family-details;
+    font-weight: 300;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 100%;
+
+    @include screen(desktop) {
+      height: 100px;
+    }
+
+    span {
+      &:first-child {
+        font-weight: inherit;
+        text-transform: uppercase;
+        margin: 0;
+        @include rhythm(16, 18);
+        margin-right: 30px;
+      }
+
+      &:nth-child(3) {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &__description {
+    font-family: $font-family-base;
+    font-size: 14px;
+    color: $title-grey;
+  }
+
+  &__img {
+    max-width: 90%;
+    width: 100%;
+    object-fit: contain;
+
+    transition: all 0.2s ease-in-out;
+
+    border-radius: 1rem;
+    box-shadow:  -20px 20px 60px #bebebe,
+             20px -20px 60px #ffffff;
+
+    @include screen(tablet) {
+      width: 80%;
+    }
+  }
+}
+
+.highlight {
+  transition: all .6s cubic-bezier(.77, 0, .175, 1);
+  color: $black;
+}
+
+.grey {
+  transition: all 0.2s ease-in-out;
+}
+
+.details {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: all 0.2s cubic-bezier(0, 0.65, 1, 0.98);
+
+  &.active {
+    opacity: 1;
+    pointer-events: visible;
+    
+    &:hover {
+      .description {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.details__el {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  margin: 0 auto;
+
+  background-color: #e4e4e4;
+
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  min-height: 500px;
+  width: 100%;
+  background-color: $secondary-color;
+  z-index: -1;
+  transform: translateY(-100%);
+  animation: slide 0.2s forwards cubic-bezier(.77, 0, .175, 1);
+
+  @include screen(tablet) {}
+}
+
+.description {
+  background-color: rgba(0, 0, 0, 0.92);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  color: $secondary-color;
+  transition: all 0.5s cubic-bezier(.77, 0, .175, 1);
+
+  opacity: 0;
+  pointer-events: none;
+
+  a:first-child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+
+  &__content {
+    height: 100%;
+    padding: 0 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(.77, 0, .175, 1);
+
+    &:hover {
+      transform: scale(1.07);
+    }
+
+    &:hover .description__link::after {
+      width: 100%;
+
+    }
+  }
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $secondary-color;
+    font-size: 40px;
+    line-height: 1.2;
+
+    @include screen(desktop) {
+      font-size: 50px;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    margin-top: 70px;
+    font-family: $font-family-details;
+
+    &:hover {
+      &::after {
+        transform: translateY(5px);
+      }
+    }
+
+    &::after {
+      @include pseudo;
+      height: 1px;
+      width: 0%;
+      background-color: $secondary-color;
+      transition: width .4s .15s cubic-bezier(.77, 0, .175, 1), transform 0.3s ease-out;
+    }
+  }
+
+  &__date {
+    font-family: $font-family-details;
+    margin-bottom: 70px;
+  }
+}
+
+.footer {
+  padding: 2em 0;
+  text-align: center;
+  color: $title-color;
+  background: $black;
+  @include rhythm(14, 16);
+
+  p {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+}

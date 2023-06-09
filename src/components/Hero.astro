@@ -1,0 +1,57 @@
+---
+import CV from '/WEVERBERGH_A_CV_052022.pdf';
+
+const socials = [
+    {
+        name: 'Linkedin',
+        link: 'https://www.linkedin.com/in/antoine-weverbergh/',
+    },
+    {
+        name: 'Mail',
+        link: 'mailto:weverant@me.com',
+    },
+    {
+        name: 'Curriculum Vitæ',
+        link: CV,
+    },
+    {
+        name: 'Codepen',
+        link: 'https://codepen.io/weverbergh-antoine/',
+    },
+    {
+        name: 'GitHub',
+        link: 'https://github.com/weverant',
+    },
+];
+---
+
+<section class='about'>
+    <div class='container'>
+        <nav>
+            <a href='#projects' class='link link--vertical'>projects</a>
+        </nav>
+        <div class='about__content section'>
+            <div class='about__limit'>
+                <h1 class='title title--small'>Antoine Weverbergh</h1>
+                <h2 class='title title--presentation'>
+                    Hey, I'm <strong>Antoine</strong>, a front end developer
+                    based in <strong> Belgium</strong>. Graduated from
+                    <a href='https://www.heaj.be/fr/' target='_blank'
+                        >Haute Ecole Albert Jacquard.</a
+                    >
+                </h2>
+                <ul class='socials row'>
+                    {
+                        socials.map((social) => (
+                            <li class='link link__socials'>
+                                <a href={social.link} target='_blank'>
+                                    {social.name}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

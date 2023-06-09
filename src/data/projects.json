@@ -1,0 +1,57 @@
+{
+  "projects": [{
+      "title": "Rethinking UX - WhatsApp",
+      "shortTitle": "Rethinking UX",
+      "url": "http://antoineweverbergh.be/projets/rethinking-ux/",
+      "images": {
+        "1x": "rux@1x",
+        "2x": "rux@2x"
+      }
+    },
+    {
+      "title": "CineWish - Wishlist App",
+      "shortTitle": "Movie Wishlist",
+      "url": "https://cinewish.netlify.app/",
+      "images": {
+        "1x": "wish@1x",
+        "2x": "wish@2x"
+      }
+    },
+    {
+      "title": "ProxiKot",
+      "shortTitle": "ProxiKot",
+      "url": "http://antoineweverbergh.be/projets/data-play/",
+      "images": {
+        "1x": "proxikot@1x",
+        "2x": "proxikot@2x"
+      }
+    },
+    {
+      "title": "CineCal",
+      "shortTitle": "Cinecal",
+      "url": "http://antoineweverbergh.be/projets/tfa/",
+      "images": {
+        "1x": "tfa@1x",
+        "2x": "tfa@2x"
+      }
+    },
+    {
+      "title": "F1 Hall of Fame",
+      "shortTitle": "F1 Hall of Fame",
+      "url": "https://tfe.antoineweverbergh.be",
+      "images": {
+        "1x": "f1@1x",
+        "2x": "f1@2x"
+      }
+    },
+    {
+      "title": "Space Tourism (concept)",
+      "shortTitle": "Space Tourism",
+      "url": "https://space-tourism-concept.netlify.app",
+      "images": {
+        "1x": "space-tourism@1x",
+        "2x": "space-tourism@2x"
+      }
+    }
+  ]
+}

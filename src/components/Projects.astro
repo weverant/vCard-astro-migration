@@ -1,0 +1,169 @@
+---
+import data from '../data/projects.json';
+const images = await Astro.glob('/src/images/*').then((files) => {
+    return files.map((file) => file.default);
+});
+
+let filteredImageNames = [];
+
+images.forEach((image) => {
+    filteredImageNames.push(image.replace(/^.*[\\\/]/, ''));
+});
+
+const getFileName = (value, extension) => {
+    return filteredImageNames.filter(
+        (element) => element.includes(value) && element.endsWith(extension)
+    );
+};
+
+const getGlobalImagePath = (fileName) => {
+    return images[filteredImageNames.indexOf(fileName[0])];
+};
+---
+
+<section id='projects' class='section__projects'>
+    <div class='container'>
+        <div class='projects section'>
+            <div class='projects__list'>
+                <div class='projects__list--left'>
+                    <h3 class='title title--small title--section'>Projects</h3>
+                    <ul class='projects__block'>
+                        {
+                            data.projects.map((project, index) => (
+                                <li
+                                    class='projects__el grey'
+                                    data-project={index + 1}
+                                >
+                                    <a href={project.url} target='_blank'>
+                                        {project.shortTitle}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class='projects__details'>
+                <ul class='projects__section'>
+                    {
+                        data.projects.map((project, index) => (
+                            <li>
+                                <a
+                                    href={project.url}
+                                    class='details'
+                                    target='_blank'
+                                    data-number={index + 1}
+                                >
+                                    <picture
+                                        id={`project${index + 1}`}
+                                        class='details__el'
+                                    >
+                                        <source
+                                            type='image/webp'
+                                            srcset={Object.entries(
+                                                project.images
+                                            )
+                                                .map(([key, value]) => {
+                                                    const fileName =
+                                                        getFileName(
+                                                            value,
+                                                            'webp'
+                                                        );
+                                                    return `${getGlobalImagePath(
+                                                        fileName
+                                                    )} ${key}`;
+                                                })
+                                                .join(', ')}
+                                        />
+                                        <img
+                                            src={`${getGlobalImagePath(
+                                                getFileName(
+                                                    project.images['1x'],
+                                                    'jpg'
+                                                )
+                                            )}`}
+                                            srcset={Object.entries(
+                                                project.images
+                                            )
+                                                .map(([key, value]) => {
+                                                    const fileName =
+                                                        getFileName(
+                                                            value,
+                                                            'jpg'
+                                                        );
+                                                    return `${getGlobalImagePath(
+                                                        fileName
+                                                    )} ${key}`;
+                                                })
+                                                .join(', ')}
+                                            alt={`${project.shortTitle} scrennshot`}
+                                            loading='lazy'
+                                            class='projects__img'
+                                            height='353'
+                                            width='700'
+                                        />
+                                    </picture>
+                                    <div class='description'>
+                                        <div class='description__content'>
+                                            <h4 class='title description__title'>
+                                                {project.title}
+                                            </h4>
+                                            <span class='description__link'>
+                                                Visit the site
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const addHandlerMouse = (els, handler, eventType = 'mouseenter') => {
+        els.forEach((el) => {
+            el.addEventListener(eventType, () => {
+                handler(el);
+            });
+        });
+    };
+
+    const switchVisual = (el) => {
+        const index = el.getAttribute('data-project');
+        const visuals = [...document.querySelectorAll('.details')];
+
+        visuals.forEach((el) => {
+            el.classList.remove('active');
+        });
+        visuals[index - 1].classList.add('active');
+    };
+
+    const onWindowSize = () => {
+        const projectEl = document.querySelectorAll('.projects__el');
+        if (
+            window.matchMedia('(max-width: 1024px) and (min-width: 768px)')
+                .matches
+        ) {
+            for (let i = 0; i < projectEl.length; i++) {
+                projectEl[i].children[0].removeAttribute('href');
+                projectEl[i].children[0].setAttribute('target', '');
+            }
+        }
+    };
+
+    const init = () => {
+        addHandlerMouse(
+            [...document.querySelectorAll('.projects__el')],
+            switchVisual
+        );
+
+        onWindowSize();
+    };
+
+    init();
+</script>

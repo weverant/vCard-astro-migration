@@ -1,0 +1,23 @@
+/*-----------------------------------------------------------------------------------*/
+/*  Config
+/*-----------------------------------------------------------------------------------*/
+
+$font-family-base: ('noto-sans', sans-serif, Georgia, Cambria, 'Times New Roman', Times, serif);
+$font-family-title: ('Moniqa', serif, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif);
+$font-family-details: ('Space Mono', monospace);
+
+// Colors
+$text-color: rgba(0, 0, 0, 0.85);
+
+$title-color: #fff;
+$title-grey: rgba(255, 255, 255, 0.62);
+
+$secondary-color: #efac87;
+$black: #000;
+
+// Type
+::selection {
+  background-color: rgba(255, 255, 255, 0.0);
+  color: $secondary-color;
+  ;
+}
