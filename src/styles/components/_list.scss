@@ -23,6 +23,10 @@
     a {
       display: inline-block;
       padding: 0.4em 0;
+
+      @include screen(tablet) {
+        padding: 0;
+      }
     }
 
     &::before {
@@ -85,9 +89,9 @@
       }
     }
   }
-  @include rhythm(16, 18);
+  @include rhythm(14, 16);
 
   @include screen(tablet) {
-    @include rhythm(18, 20);
+    @include rhythm(16, 20);
   }
 }

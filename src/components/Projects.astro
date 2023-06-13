@@ -11,8 +11,14 @@ images.forEach((image) => {
 });
 
 const getFileName = (value, extension) => {
+    const isExtensionArray = Array.isArray(extension);
+
     return filteredImageNames.filter(
-        (element) => element.includes(value) && element.endsWith(extension)
+        (element) =>
+            element.includes(value) &&
+            (isExtensionArray
+                ? extension.some((string) => element.endsWith(string))
+                : element.endsWith(extension))
     );
 };
 
@@ -80,7 +86,7 @@ const getGlobalImagePath = (fileName) => {
                                             src={`${getGlobalImagePath(
                                                 getFileName(
                                                     project.images['1x'],
-                                                    'jpg'
+                                                    ['jpg', 'jpeg']
                                                 )
                                             )}`}
                                             srcset={Object.entries(
@@ -88,10 +94,10 @@ const getGlobalImagePath = (fileName) => {
                                             )
                                                 .map(([key, value]) => {
                                                     const fileName =
-                                                        getFileName(
-                                                            value,
-                                                            'jpg'
-                                                        );
+                                                        getFileName(value, [
+                                                            'jpg',
+                                                            'jpeg',
+                                                        ]);
                                                     return `${getGlobalImagePath(
                                                         fileName
                                                     )} ${key}`;
